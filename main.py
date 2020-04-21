@@ -21,16 +21,18 @@ def check_incomplete_entries(bibtex_database, required_fields):
     :returns: a list of entries (by id) where an item is missing
     """
     ret = []
-    # append the author and title in case they are not there.
+    # append the author and title in case they are not there. Should I use set?
     if "author" not in required_fields: required_fields.append("author")
     if "title" not in required_fields: required_fields.append("title")
 
     for entry in bibtex_database.entries:
+        missing_items = []
         for item in required_fields:
             if item not in entry:
                 print(entry["ID"], " is missing ", item)
-                ret.append(entry["ID"])
+                missing_items.append(item)
+        if len(missing_items)!= 0:
+            ret.append([entry["ID"],missing_items])
 
-    # TODO return list of lists!
     return ret
 

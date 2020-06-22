@@ -83,9 +83,9 @@ def print_journal(bib_item):
         bib_item['journal']
     except:
         return
-    print('<span><i>"',end="")
+    print('<span><i>',end="")
     print(bib_item['journal'],end="")
-    print('", </i></span>', sep='')
+    print(', </i></span>', sep='')
 
 def print_doi(bib_item):
     try:

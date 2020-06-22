@@ -116,3 +116,24 @@ def print_entry(bib_item):
     print_abstract(bib_item)
     print('</p></div>')
     print('<hr class="mt-0" style="border-top: 3px double #8c8b8b;">')
+
+
+
+def print_entry_by_id(entry_id, bib):
+    print_entry(next(entry for entry in bib.entries if entry["ID"] == entry_id))
+    
+#main
+bib=load_bibtex_database("./bibliography.bib")
+clean_up_names(bib)
+
+print_entry_by_id("Wigand_2018", bib)
+print_entry_by_id("Pouya_RAM2019", bib)
+print_entry_by_id("Mohammadi_2018", bib)
+print_entry_by_id("Mohammadi_2014", bib)
+print_entry_by_id("Mohammadi_2019_reactive", bib)
+print_entry_by_id("Mohammadi_2015", bib)
+print_entry_by_id("Sugeeth_2019", bib)
+print_entry_by_id("Mohammadi_contact_2019", bib)
+print_entry_by_id("Shareef_2016", bib)
+print_entry_by_id("Sugeeth_icra", bib)
+print_entry_by_id("Jindrich_2019", bib)

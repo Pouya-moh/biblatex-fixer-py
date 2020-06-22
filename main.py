@@ -51,3 +51,28 @@ def print_all_names(bib_item):
                 print(" and ", sep='', end ="")
         print(bibtexparser.customization.splitname(names)['first'][0]," ", bibtexparser.customization.splitname(names)['last'][0], sep='', end ="")
 
+
+
+def print_month(bib_item):
+    print(bib_item['month'],end="")
+
+def print_year(bib_item):
+    print(bib_item['year'],end="")
+
+def print_publisher(bib_item):
+    print(bib_item['publisher'],end="")
+
+def print_journal(bib_item):
+    print(bib_item['journal'],end="")
+
+def print_doi(bib_item):
+    print(bib_item['doi'],end="")
+
+def print_url(bib_item):
+    print(bib_item['url'],end="")
+
+def print_isbn(bib_item):
+    print(bib_item['isbn'],end="")
+
+def print_title(bib_item):
+    print(bib_item['title'],end="")

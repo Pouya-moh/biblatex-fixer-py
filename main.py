@@ -58,11 +58,19 @@ def print_authors(bib_item):
     print (', </span>', sep='')
 
 def print_month(bib_item):
+    try:
+        bib_item['month']
+    except:
+        return
     print('<span>',end="")
     print(bib_item['month'],end="")
     print(' </span>')
 
 def print_year(bib_item):
+    try:
+        bib_item['year']
+    except:
+        return
     print('<span>',end="")
     print(bib_item['year'],end="")
     print(', </span>')
@@ -71,11 +79,19 @@ def print_publisher(bib_item):
     print(bib_item['publisher'],end="")
 
 def print_journal(bib_item):
+    try:
+        bib_item['journal']
+    except:
+        return
     print('<span><i>"',end="")
     print(bib_item['journal'],end="")
     print('", </i></span>', sep='')
 
 def print_doi(bib_item):
+    try:
+        bib_item['doi']
+    except:
+        return
     print('<span>DOI: ',end="")
     print('<a href="https://dx.doi.org/', sep='',end="")
     print(bib_item['doi'],'">', sep='',end="")
@@ -97,6 +113,10 @@ def print_abstract(bib_item):
     print(bib_item['abstract'],end="")
 
 def print_pages(bib_item):
+    try:
+        bib_item['pages']
+    except:
+        return
     print('<span>pp. ',end="")
     print(bib_item['pages'],end="")
     print(', </span>')
@@ -111,17 +131,22 @@ def print_entry(bib_item):
     print_year(bib_item)
     print_doi(bib_item)
     print ('</p>')
-    abst_css='<div class="d-flex justify-content-between"><span style="font-variant: small-caps;text-rendering: auto;font-weight: bold;"><a class="text-dark collapsed" data-toggle="collapse" href="#collapseID_PAPER" role="button" aria-expanded="true" aria-controls="collapseID_PAPER">Abstract</a></span><a class="btn btn-outline-primary border-0 collapsed" data-toggle="collapse" href="#collapseID_PAPER" role="button" aria-expanded="true" aria-controls="collapseEducation"><i class="fa"></i></a></div><div class="collapse multi-collapse" id="collapseID_PAPER"><p class="text-justify-sm">'
-    print (abst_css.replace("collapseID_PAPER","collapse_"+bib_item['ID']))
-    print_abstract(bib_item)
-    print('</p></div>')
+    try:
+        bib_item['abstract']        
+        abst_css='<div class="d-flex flex-row-reverse"><a class="btn btn-outline-primary border-0 collapsed" data-toggle="collapse" href="#collapseID_PAPER" role="button" aria-expanded="true" aria-controls="collapseEducation"><span style="font-variant: small-caps;text-rendering: auto;">Abstract </span><i class="fa"></i></a></div><div class="collapse multi-collapse" id="collapseID_PAPER"><p class="text-justify-sm">'
+        print (abst_css.replace("collapseID_PAPER","collapse_"+bib_item['ID']))
+        print_abstract(bib_item)
+        print('</p></div>')
+    except:
+        pass
     print('<hr class="mt-0" style="border-top: 3px double #8c8b8b;">')
 
 
 
 def print_entry_by_id(entry_id, bib):
     print_entry(next(entry for entry in bib.entries if entry["ID"] == entry_id))
-    
+
+
 #main
 bib=load_bibtex_database("./bibliography.bib")
 clean_up_names(bib)

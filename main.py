@@ -40,3 +40,14 @@ def clean_up_names(bib_item):
     """Leverages on bibtexparser and turns names into lists"""
     for items in bib_item.entries:
         bibtexparser.customization.author(items)
+
+# this is quite possibly the ugliest piece of code I've ever written...
+def print_all_names(bib_item):
+    for idx, names in enumerate(bib_item['author']):
+        if idx > 0:
+            if idx != len(bib_item['author'])-1:
+                print(", ",  sep='', end ="")
+            else:
+                print(" and ", sep='', end ="")
+        print(bibtexparser.customization.splitname(names)['first'][0]," ", bibtexparser.customization.splitname(names)['last'][0], sep='', end ="")
+

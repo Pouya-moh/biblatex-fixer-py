@@ -36,3 +36,7 @@ def check_incomplete_entries(bibtex_database, required_fields):
 
     return ret
 
+def clean_up_names(bib_item):
+    """Leverages on bibtexparser and turns names into lists"""
+    for items in bib_item.entries:
+        bibtexparser.customization.author(items)
